@@ -1,8 +1,8 @@
 package com.trueconf.videochat.test;
 
 import com.robotium.solo.*;
+import com.trueconf.videochat.test.testActivity.TestFirstStartApp;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity;
-import com.trueconf.videochat.test.testSendMessage.TestMessage;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -10,7 +10,8 @@ import android.test.ActivityInstrumentationTestCase2;
 public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private Solo solo;
     private TestLoginActivity testLoginActivity;
-    private TestMessage testMessage;
+    private TestFirstStartApp testFirstStartApp;
+
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
 
     private static Class<?> launcherActivityClass;
@@ -23,32 +24,57 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         }
     }
 
-
     public TestTrueConf() throws ClassNotFoundException {
         super(launcherActivityClass);
     }
 
+    //Before
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        solo = new Solo(getInstrumentation());
-        testLoginActivity = new TestLoginActivity(this.solo);
-        testMessage = new TestMessage(this.solo);
+        solo = new Solo(getInstrumentation(), getActivity());
+        testLoginActivity = new TestLoginActivity(solo);
+        testFirstStartApp = new TestFirstStartApp(solo);
         getActivity();
     }
 
-    public void testLoginActivity() {
-        testLoginActivity.testIsHaveAccount();
-        testLoginActivity.testLoginActivityLoginIn();
+
+    //Test 1
+    public void testLoginActivitySingUp() {
         testLoginActivity.testLoginActivitySingUp();
     }
 
-    public void testMessage() {
-        testMessage.testRun();
+    //Test 2
+    public void testLoginActivityLoginIn() {
+        testLoginActivity.testLoginActivityLoginIn();
     }
 
+    //Test 3
+    public void testLoginActivityIsHaveAccount() {
+        testLoginActivity.testIsHaveAccount();
+    }
 
+    //Test4
+    public void testHardvard() {
+        testLoginActivity.testHardvard();
+    }
 
+    //Test5
+    public void testFalseLogin() {
+        testLoginActivity.testFalseLogin();
+    }
+
+    //Test6
+    public void testCorrectLogin() {
+        testLoginActivity.testCorrectLogin();
+    }
+
+    //Test7
+    public void testFirstLoginToListActivityAndBack() {
+        testFirstStartApp.testCorrectLogin();
+    }
+
+    //After
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();

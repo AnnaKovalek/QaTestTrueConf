@@ -53,7 +53,7 @@ android {
 task assembleDebug(overwrite: true) {}
 
 task copyTask(type: Copy) {
-    from 'libs/android-1.2.4-rc85-arm_debug.apk'
+    from 'libs/android-1.2.4-rc84-arm_debug.apk'
     into 'build/outputs/apk/'
     rename {
         'AppTest-debug.apk'
