@@ -31,12 +31,12 @@ public class TestFirstStartApp {
         //Click on Empty Text View
         solo.clickOnView(solo.getView("et_videochat_id"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_videochat_id"));
-        solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "fear724");
+        solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "kovalek");
 
         //Enter the text: '2687484'
         solo.clickOnView(solo.getView("et_password"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_password"));
-        solo.enterText((android.widget.EditText) solo.getView("et_password"), "2687484");
+        solo.enterText((android.widget.EditText) solo.getView("et_password"), "pop2233");
 
         solo.pressSoftKeyboardNextButton();
 

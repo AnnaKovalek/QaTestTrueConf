@@ -77,7 +77,14 @@ public class TestLoginActivity {
 
     //Test4
     public void testHardvard() {
+        solo.sleep(2000);
+        solo.waitForActivity("Login", 3000);
+        Timeout.setSmallTimeout(12000);
+        solo.sleep(3000);
+        solo.sendKey(solo.MENU);
+        solo.sleep(3000);
 
+        solo.goBack();
 
     }
 
@@ -123,5 +130,7 @@ public class TestLoginActivity {
         assertTrue("Неверный TrueConf ID или пароль", solo.waitForActivity("Login"));
         solo.goBack();
     }
+//Test8
+
 
 }
