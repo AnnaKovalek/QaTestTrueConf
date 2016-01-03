@@ -74,6 +74,11 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testFirstStartApp.testCorrectLogin();
     }
 
+    //Test8
+    public void testButtonChangeServer() {
+        testLoginActivity.testButtonChangeServer();
+    }
+
     //After
     @Override
     public void tearDown() throws Exception {
