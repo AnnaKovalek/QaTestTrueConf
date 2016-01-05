@@ -3,6 +3,9 @@ package com.trueconf.videochat.test.testActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
@@ -143,29 +146,67 @@ public class TestLoginActivity {
     //Test8
     public void testButtonChangeServer() {
         solo.sleep(3000);
-        solo.waitForActivity("Login", 3000);
+        solo.waitForActivity("Login", 5000);
         Timeout.setSmallTimeout(12000);
         solo.pressSoftKeyboardNextButton();
         solo.clickOnView(solo.getView("select_server_area"));
         solo.sleep(2000);
-        solo.clickOnView(solo.getView("lv_servers_for_connect"));
-        solo.sleep(2000);
-//check if Use TrueConf Online service radiobutton is selected
-      /**  Boolean actual = solo.isRadioButtonChecked("rb_select_use_default_server");
-        if (actual == true) {
-            solo.pressSoftKeyboardNextButton();
-            solo.clickOnView(solo.getView("lv_servers_for_connect"));
-            assertEquals("TrueConf Online service is selected", true, true);
-            solo.searchEditText("connected to service");
-        } else {
-            solo.clickOnRadioButton(0);
-            solo.sleep(3000);
-            solo.pressSoftKeyboardNextButton();
-            solo.clickOnView(solo.getView("lv_servers_for_connect"));
+        //Определить RadioButton по ID
+        RadioButton r_default_server = (RadioButton)solo.getView("rb_select_server_use_default_server");
+        RadioButton r_custom_server = (RadioButton)solo.getView("rb_select_server_use_custom_server");
 
-        }
-        solo.sleep(2000);
-        solo.goBack();*/
+        /** Test 1 */
+        //Первая проверка
+        //Радио баттон первая нажата, вторая нет
+        assertTrue(r_default_server.isChecked());
+        assertFalse(r_custom_server.isChecked());
+
+        /** Test 2 */
+        //При нажатии на вторую кнопку она становиться активной
+        solo.clickOnView(r_custom_server);
+        solo.sleep(500); //небольшая пауза
+        assertTrue(r_custom_server.isChecked()); //вторая активная
+        solo.sleep(500);
+        assertFalse(r_default_server.isChecked()); //первая не активная
+        solo.sleep(500);
+
+        /** Test 3 */
+        //При нажатии на первую кнопку она становиться активной
+        solo.clickOnView(r_default_server);
+        solo.sleep(500); //небольшая пауза
+        assertTrue(r_default_server.isChecked()); //первая активная
+        solo.sleep(500);
+        assertFalse(r_custom_server.isChecked()); //вторая не активная
+        solo.sleep(500);
+
+        /** Test 4 */
+        //При нажатии на вторую кнопку становиться активной поле ввода
+        solo.clickOnView(r_custom_server);
+        solo.sleep(500); //небольшая пауза
+        assertTrue(r_custom_server.isChecked()); //вторая активная
+        solo.sleep(500); //небольшая пауза
+        EditText editText = (EditText) solo.getView("et_server_ip");
+        solo.sleep(500); //небольшая пауза
+        //На полле ввода можно нажать
+        assertTrue(editText.isEnabled());
+        solo.sleep(500); //небольшая пауза
+        solo.clearEditText(editText);
+        solo.sleep(100);
+        //Вписать сервер
+        solo.enterText(editText, "kovalek");
+        solo.sleep(1000);
+        solo.clearEditText(editText); //очистчиь по окончанию теста
+
+        /** Test 5 */
+        //При нажатии на первую кнопку она становиться активной, а полле воода нет
+        solo.clickOnView(r_default_server);
+        solo.sleep(500); //небольшая пауза
+        assertTrue(r_default_server.isChecked()); //первая активная
+        solo.sleep(500);
+        assertFalse(editText.isEnabled());
+        solo.sleep(1000);
+        solo.goBack();
+
     }
 
 }
