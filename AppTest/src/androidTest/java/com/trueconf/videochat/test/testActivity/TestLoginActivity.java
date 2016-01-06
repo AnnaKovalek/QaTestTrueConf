@@ -1,22 +1,18 @@
 package com.trueconf.videochat.test.testActivity;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.util.Log;
+
 import android.view.KeyEvent;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
-/***
- * automatic black-box UI tests for Android applications TrueConf
+/**
+ * Описание, что делает тест
  */
 
 public class TestLoginActivity {
@@ -26,7 +22,10 @@ public class TestLoginActivity {
         this.solo = solo;
     }
 
-    //Test 1
+    /**
+     * Test 1
+     */
+    // Описание теста
     public void testLoginActivitySingUp() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
@@ -43,7 +42,9 @@ public class TestLoginActivity {
         assertTrue("Login is not found!", solo.waitForActivity("Login"));
     }
 
-    //Test 2
+    /**
+     * Test 2
+     */
     public void testLoginActivityLoginIn() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
@@ -57,7 +58,9 @@ public class TestLoginActivity {
         solo.goBack();
     }
 
-    //Test 3
+    /**
+     * Test 3
+     */
     public void testIsHaveAccount() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
@@ -81,8 +84,10 @@ public class TestLoginActivity {
         solo.goBack();
     }
 
-    //Test4
-    public void testHardvard() {
+    /**
+     * Test 4
+     */
+    public void testHardWardButton() {
         solo.sleep(2000);
         solo.waitForActivity("Login", 5000);
         Timeout.setSmallTimeout(12000);
@@ -101,7 +106,9 @@ public class TestLoginActivity {
 
     }
 
-    //Test5
+    /**
+     * Test 5
+     */
     public void testFalseLogin() {
         solo.sleep(2000);
         solo.waitForActivity("Login", 10000);
@@ -122,7 +129,9 @@ public class TestLoginActivity {
         solo.goBack();
     }
 
-    //Test6
+    /**
+     * Test 6
+     */
     public void testCorrectLogin() {
         solo.sleep(3000);
         solo.waitForActivity("Login", 10000);
@@ -144,25 +153,34 @@ public class TestLoginActivity {
         solo.goBack();
     }
 
-    //Test8
+    /**
+     * Test 7
+     */
     public void testButtonChangeServer() {
+
+        /** 1. Подготовка к запуску приложения */
         solo.sleep(3000);
         solo.waitForActivity("Login", 5000);
         Timeout.setSmallTimeout(12000);
+
+        /** 2. Переход на TRATATATATATAT  */
         solo.pressSoftKeyboardNextButton();
         solo.clickOnView(solo.getView("select_server_area"));
         solo.sleep(2000);
-        //Определить RadioButton по ID
+        System.out.println(solo.getCurrentActivity());
+
+
+
+        /** 3. Определение компонентов: RadioButton по ID */
         RadioButton r_default_server = (RadioButton) solo.getView("rb_select_server_use_default_server");
         RadioButton r_custom_server = (RadioButton) solo.getView("rb_select_server_use_custom_server");
 
-        /** Test 1 */
-        //Первая проверка
+        /** Test 7.1 */
         //Радио баттон первая нажата, вторая нет
         assertTrue(r_default_server.isChecked());
         assertFalse(r_custom_server.isChecked());
 
-        /** Test 2 */
+        /** Test 7.2 */
         //При нажатии на вторую кнопку она становиться активной
         solo.clickOnView(r_custom_server);
         solo.sleep(500); //небольшая пауза
@@ -171,7 +189,7 @@ public class TestLoginActivity {
         assertFalse(r_default_server.isChecked()); //первая не активная
         solo.sleep(500);
 
-        /** Test 3 */
+        /** Test 7.3 */
         //При нажатии на первую кнопку она становиться активной
         solo.clickOnView(r_default_server);
         solo.sleep(500); //небольшая пауза
@@ -180,17 +198,16 @@ public class TestLoginActivity {
         assertFalse(r_custom_server.isChecked()); //вторая не активная
         solo.sleep(500);
 
-        /** Test 4 */
+        /** Test 7.4 */
         //При нажатии на вторую кнопку становиться активной поле ввода
         solo.clickOnView(r_custom_server);
-        solo.sleep(500); //небольшая пауза
+        solo.sleep(500);
         assertTrue(r_custom_server.isChecked()); //вторая активная
-        solo.sleep(500); //небольшая пауза
+        solo.sleep(500);
         EditText editText = (EditText) solo.getView("et_server_ip");
-        solo.sleep(500); //небольшая пауза
-        //На полле ввода можно нажать
-        assertTrue(editText.isEnabled());
-        solo.sleep(500); //небольшая пауза
+        solo.sleep(500);
+        assertTrue(editText.isEnabled()); //На полле ввода можно нажать
+        solo.sleep(500);
         solo.clearEditText(editText);
         solo.sleep(100);
         //Вписать сервер
@@ -198,80 +215,15 @@ public class TestLoginActivity {
         solo.sleep(1000);
         solo.clearEditText(editText); //очистить по окончанию теста
 
-        /** Test 5 */
+        /** Test 7.5 */
         //При нажатии на первую кнопку она становиться активной, а полле воода нет
         solo.clickOnView(r_default_server);
-        solo.sleep(500); //небольшая пауза
+        solo.sleep(500);
         assertTrue(r_default_server.isChecked()); //первая активная
         solo.sleep(500);
         assertFalse(editText.isEnabled());
         solo.sleep(1000);
-        //solo.goBack();
-
-        /** Test 6 */
-        //При нажатии на вторую кнопку становиться активной поле ввода
-        solo.clickOnView(r_custom_server);
-        solo.sleep(500); //небольшая пауза
-        assertTrue(r_custom_server.isChecked()); //вторая активная
-        solo.sleep(500); //небольшая пауза
-        EditText eT = (EditText) solo.getView("et_server_ip");
-        solo.sleep(500); //небольшая пауза
-        //На полле ввода можно нажать
-        assertTrue(eT.isEnabled());
-        solo.sleep(500); //небольшая пауза
-        solo.clearEditText(editText);
-        solo.sleep(100);
-        //Вписать сервер
-        solo.enterText(editText, "video.trueconf.com");
-        solo.sleep(1000);
-        //Динамическое ID 501, нажатие по названию
-        solo.clickOnText("Connect");
-        solo.sleep(2000);
-        //solo.goBack();
-        // как проверить что подключились к серверу
-
-        /** Test 8*/
-// проверить что при активной радиобаттон 2 и пустом поле сервера нельзя нажать Connect
-// залогинивание при подключенном к серверу video.trueconf.com
-        solo.waitForActivity("Login", 10000);
-        Timeout.setSmallTimeout(10000);
-        solo.clickOnView(solo.getView("et_videochat_id"));
-        solo.clearEditText((android.widget.EditText) solo.getView("et_videochat_id"));
-        solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "kovalek");
-
-        solo.clickOnView(solo.getView("et_password"));
-        solo.clearEditText((android.widget.EditText) solo.getView("et_password"));
-        solo.enterText((android.widget.EditText) solo.getView("et_password"), "kovalek");
-
-        solo.pressSoftKeyboardNextButton();
-        solo.clickOnView(solo.getView("btn_login_ll"));
-        assertTrue("Неверный TrueConf ID или пароль", solo.waitForActivity("ContactTabs"));
-        solo.sleep(2000);
-        //solo.goBack();
-
-        //Logout
-        solo.clickOnActionBarHomeButton();
-        android.widget.ListView homeListView = solo.getView(ListView.class, 2);
-        solo.scrollListToLine(homeListView, 3);
-        //Click on Logout
-        solo.clickInList(7);
-       solo.clickOnView(solo.getView(homeListView.getChildAt(12)));
-        //Wait for activity: 'com.trueconf.gui.activities.Login'
-        assertTrue("Login is not found!", solo.waitForActivity("Login"));
-        solo.sleep(2000);
-
-        // Change server
-        solo.pressSoftKeyboardNextButton();
-        solo.clickOnView(solo.getView("select_server_area"));
-        solo.sleep(2000);
-        solo.clickOnView(r_default_server);
-        solo.sleep(500); //небольшая пауза
-        assertTrue(r_default_server.isChecked()); //первая активная
-        solo.sleep(500);
-        solo.clickOnText("Connect");
-        assertTrue("Login activity is not found", solo.waitForActivity("Login"));
-
-
+        solo.goBack();
     }
 
 }

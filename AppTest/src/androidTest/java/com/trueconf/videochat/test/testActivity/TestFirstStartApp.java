@@ -10,11 +10,19 @@ import junit.framework.AssertionFailedError;
 
 import static junit.framework.Assert.assertTrue;
 
+/**
+ * Описание, что делает тест
+ */
+
 public class TestFirstStartApp {
     private Solo solo;
 
     public TestFirstStartApp(Solo solo) {
         this.solo = solo;
+    }
+
+    public void start(){
+
     }
 
     //Test1
@@ -42,22 +50,19 @@ public class TestFirstStartApp {
 
         //Click on Login
         solo.clickOnView(solo.getView("btn_login_ll"));
-
         assertTrue("Неверный TrueConf ID или пароль", solo.waitForActivity("ContactTabs"));
-
 
         //Проверка стартового уведомления по id
         View menuDialogHeader = null;
-        try{
+        try {
             menuDialogHeader = solo.getView("menuDialogHeader");
-        }catch (AssertionFailedError e){
+        } catch (AssertionFailedError e) {
             //nothing
         }
-        if (menuDialogHeader!=null) {
+        if (menuDialogHeader != null) {
             //если активное, нажимаем Back
             solo.goBack();
         }
-
 
         //Реализация выхода с App
         solo.clickOnActionBarHomeButton();
