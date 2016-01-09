@@ -11,7 +11,7 @@ import junit.framework.AssertionFailedError;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Описание, что делает тест
+ * Класс проверки уведомления (menuDialogHeader) при первом запуске приложения
  */
 
 public class TestFirstStartApp {
@@ -21,38 +21,40 @@ public class TestFirstStartApp {
         this.solo = solo;
     }
 
-    public void start(){
-
-    }
-
-    //Test1
+    /**
+     * Test 1
+     * Метод проверки первой авторизации при введении корректных значений TrueConfId и password
+     * проверки уведомления menuDialogHeader
+     */
     public void testCorrectLogin() {
+
+        /** 1. Подготовка к запуску приложения */
         solo.sleep(2000);
-        //Wait for activity: 'com.trueconf.gui.activities.Login'
+        // 1.1 Wait for activity: 'com.trueconf.gui.activities.Login'
         solo.waitForActivity("Login", 3000);
-        //Set default small timeout to 12000 milliseconds
+        // 1.2 Set default small timeout to 12000 milliseconds
         Timeout.setSmallTimeout(12000);
-        //Click on Have an account Log in
+        // 1.3 Click on Have an account Log in
         solo.clickOnView(solo.getView("tv_is_have_account"));
         solo.sleep(3000);
 
-        //Click on Empty Text View
+        // 1.4 Click on Empty Text View
         solo.clickOnView(solo.getView("et_videochat_id"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_videochat_id"));
         solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "kovalek");
 
-        //Enter the text: '2687484'
+        // 1.5 Enter the text: 'pop2233'
         solo.clickOnView(solo.getView("et_password"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_password"));
         solo.enterText((android.widget.EditText) solo.getView("et_password"), "pop2233");
 
         solo.pressSoftKeyboardNextButton();
 
-        //Click on Login
+        // 1.6 Click on Login
         solo.clickOnView(solo.getView("btn_login_ll"));
         assertTrue("Неверный TrueConf ID или пароль", solo.waitForActivity("ContactTabs"));
 
-        //Проверка стартового уведомления по id
+        // 1.7 Проверка стартового уведомления по id
         View menuDialogHeader = null;
         try {
             menuDialogHeader = solo.getView("menuDialogHeader");
@@ -63,16 +65,30 @@ public class TestFirstStartApp {
             //если активное, нажимаем Back
             solo.goBack();
         }
+        //TODO: проверить компоненты стартового уведомления
 
-        //Реализация выхода с App
+        /** 2. Выход с приложения  */
+        //2.0 Нажатимаем на HomeButton
         solo.clickOnActionBarHomeButton();
+        solo.sleep(300);
         android.widget.ListView homeListView = solo.getView(ListView.class, 2);
-        solo.scrollListToLine(homeListView, 3);
-        //Click on Logout kovalek@trueconf.com
-        solo.clickOnText(java.util.regex.Pattern.quote("Logout"));
-        //Wait for activity: 'com.trueconf.gui.activities.Login'
+        solo.sleep(300);
+
+        //2.1 Определяем Logout
+        String itemLogout = (String) homeListView.getItemAtPosition(11);
+        solo.sleep(300);
+
+        //2.2 Прокручиваем список на последнюю позицию
+        solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
+        solo.sleep(300);
+
+        //2.3 Нажимаем на Logout
+        solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
+        solo.sleep(300);
+
+        //2.4 проверка на переход Activity Login
         assertTrue("Login is not found!", solo.waitForActivity("Login"));
+        solo.sleep(300);
+        solo.goBack();
     }
-
-
 }

@@ -1,0 +1,14 @@
+<!-- From: file:/Users/jw/dev/double-espresso/espresso-support-v4/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.google.android.apps.common.testing.ui.espresso.contrib">
+
+    <uses-sdk android:minSdkVersion="8"/>
+
+    <application/>
+
+    <!-- From: file:/var/folders/w0/hr1h_7h50f3_pwd_nrk9l808000195/T/manifestMerge5758770018512173647.xml -->
+    <!-- From: file:/var/folders/w0/hr1h_7h50f3_pwd_nrk9l808000195/T/manifestMerge2431407862702490546.xml -->
+    <!-- From: file:/Users/jw/dev/double-espresso/espresso-runner-runtime/build/exploded-aar/com.jakewharton.espresso/espresso-runner/1.1-r3/AndroidManifest.xml -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- From: file:/Users/jw/dev/double-espresso/espresso-support-v4/src/main/AndroidManifest.xml -->
+    
+
+</manifest>

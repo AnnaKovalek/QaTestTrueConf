@@ -2,17 +2,22 @@ package com.trueconf.videochat.test;
 
 import com.robotium.solo.*;
 import com.trueconf.videochat.test.testActivity.TestFirstStartApp;
+import com.trueconf.videochat.test.testActivity.TestListNavigationDrawer;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity_Button_ChangeServer;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+/**
+ * Основной тестовый класс
+ */
 
 public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private Solo solo;
     private TestLoginActivity testLoginActivity;
     private TestFirstStartApp testFirstStartApp;
-    private TestLoginActivity_Button_ChangeServer testLoginActivity_button_changeServer ;
+    private TestLoginActivity_Button_ChangeServer testLoginActivity_button_changeServer;
+    private TestListNavigationDrawer testListNavigationDrawer;
 
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
     private static Class<?> launcherActivityClass;
@@ -33,11 +38,14 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        this.solo = new Solo(getInstrumentation(), getActivity());
-        this.testLoginActivity = new TestLoginActivity(solo);
-        this.testFirstStartApp = new TestFirstStartApp(solo);
-        this.testLoginActivity_button_changeServer = new TestLoginActivity_Button_ChangeServer(solo);
+        solo = new Solo(getInstrumentation(), getActivity());
+        testLoginActivity = new TestLoginActivity(solo);
+        testFirstStartApp = new TestFirstStartApp(solo);
+        testLoginActivity_button_changeServer = new TestLoginActivity_Button_ChangeServer(solo);
+        testListNavigationDrawer = new TestListNavigationDrawer(solo);
+
         getActivity();
+
     }
 
     // ****************************  TestLoginActivity    ******************************
@@ -82,7 +90,20 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testFirstStartApp.testCorrectLogin();
     }
 
+    // ****************************  TestLoginActivity_Button_ChangeServer    ******************************
+    public void testButtonChangeServer_01() {
+        testLoginActivity_button_changeServer.testButtonChangeServer();
+    }
 
+    public void testButtonChangeServer_02() {
+        testLoginActivity_button_changeServer.testButtonChangeServer_2();
+    }
+
+    // ******************************** TestListNavigationDrawer **********************************************
+
+    public void testListNavigationDrawer (){
+        testListNavigationDrawer.testListNavigationDrawer();
+    }
 
     //After
     @Override

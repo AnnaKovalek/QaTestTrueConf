@@ -2,17 +2,22 @@ package com.trueconf.videochat.test.testActivity;
 
 
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
 
+
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Описание, что делает тест
+ * Класс проверки валидности компонентов (sign up, have an account(log in),
+ * change server, menuhardvard) активити Login
  */
 
 public class TestLoginActivity {
@@ -24,8 +29,9 @@ public class TestLoginActivity {
 
     /**
      * Test 1
+     * Метод проверки перехода при нажатии sign up на активити Register
      */
-    // Описание теста
+
     public void testLoginActivitySingUp() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
@@ -44,14 +50,16 @@ public class TestLoginActivity {
 
     /**
      * Test 2
+     * Метод проверки перехода при нажатии Have an account Log in" на активити Login
      */
+
     public void testLoginActivityLoginIn() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
         solo.waitForActivity("Login", 3000);
         //Set default small timeout to 12000 milliseconds
         Timeout.setSmallTimeout(12000);
-        //Click on "Have an account Log in0"
+        //Click on "Have an account Log in"
         solo.clickOnView(solo.getView("tv_is_have_account"));
         solo.sleep(3000);
         assertTrue("Login Activity is not found", solo.waitForActivity("Login"));
@@ -60,7 +68,9 @@ public class TestLoginActivity {
 
     /**
      * Test 3
+     * Метод проверки - невозможно пройти авторизацию при введении только одного поля: поля TrueConf ID
      */
+
     public void testIsHaveAccount() {
         solo.sleep(2000);
         //Wait for activity: 'com.trueconf.gui.activities.Login'
@@ -86,7 +96,9 @@ public class TestLoginActivity {
 
     /**
      * Test 4
+     * Метод проверки появляющегося меню хардварной кнопки для Alcatel 4027D
      */
+
     public void testHardWardButton() {
         solo.sleep(2000);
         solo.waitForActivity("Login", 5000);
@@ -108,7 +120,9 @@ public class TestLoginActivity {
 
     /**
      * Test 5
+     * Метод проверки - невозможно пройти авторизацию при введении только одного поля: поля password
      */
+
     public void testFalseLogin() {
         solo.sleep(2000);
         solo.waitForActivity("Login", 10000);
@@ -131,7 +145,9 @@ public class TestLoginActivity {
 
     /**
      * Test 6
+     * Метод проверки - невозможно пройти авторизацию при введении неверного пароля
      */
+    //TODO: переименовать метод
     public void testCorrectLogin() {
         solo.sleep(3000);
         solo.waitForActivity("Login", 10000);
@@ -155,7 +171,9 @@ public class TestLoginActivity {
 
     /**
      * Test 7
+     * Метод проверки на существование всех компонентов activity_select_server
      */
+
     public void testButtonChangeServer() {
 
         /** 1. Подготовка к запуску приложения */
@@ -163,66 +181,36 @@ public class TestLoginActivity {
         solo.waitForActivity("Login", 5000);
         Timeout.setSmallTimeout(12000);
 
-        /** 2. Переход на TRATATATATATAT  */
+        /** 2. Переход на activity_select_server.xml  */
         solo.pressSoftKeyboardNextButton();
         solo.clickOnView(solo.getView("select_server_area"));
         solo.sleep(2000);
         System.out.println(solo.getCurrentActivity());
 
+        /** 3. Проверка на существование LinearLayout android:id="@+id/ll_server_options_form"   */
+        View ll_server_options_form = solo.getView("ll_server_options_form");
+        assertNotNull(ll_server_options_form);
 
-
-        /** 3. Определение компонентов: RadioButton по ID */
+        /** 4. Проверка на существование RadioButton android:id="@+id/rb_select_server_use_default_server"   */
         RadioButton r_default_server = (RadioButton) solo.getView("rb_select_server_use_default_server");
+        assertNotNull(r_default_server);
+
+        /** 5. Проверка на существование RadioButton android:id="@+id/rb_select_server_use_custom_server"   */
         RadioButton r_custom_server = (RadioButton) solo.getView("rb_select_server_use_custom_server");
+        assertNotNull(r_custom_server);
 
-        /** Test 7.1 */
-        //Радио баттон первая нажата, вторая нет
-        assertTrue(r_default_server.isChecked());
-        assertFalse(r_custom_server.isChecked());
 
-        /** Test 7.2 */
-        //При нажатии на вторую кнопку она становиться активной
-        solo.clickOnView(r_custom_server);
-        solo.sleep(500); //небольшая пауза
-        assertTrue(r_custom_server.isChecked()); //вторая активная
-        solo.sleep(500);
-        assertFalse(r_default_server.isChecked()); //первая не активная
-        solo.sleep(500);
+        /** 6. Проверка на существование поля для ввода адресса сервера*/
+        EditText et_server_ip = (EditText) solo.getView("et_server_ip");
+        assertNotNull(et_server_ip);
 
-        /** Test 7.3 */
-        //При нажатии на первую кнопку она становиться активной
-        solo.clickOnView(r_default_server);
-        solo.sleep(500); //небольшая пауза
-        assertTrue(r_default_server.isChecked()); //первая активная
-        solo.sleep(500);
-        assertFalse(r_custom_server.isChecked()); //вторая не активная
-        solo.sleep(500);
+        /** 6. Проверка на существование TextView "Learn more"*/
+        TextView tcsAdsMore = (TextView) solo.getView("tcsAdsMore");
+        assertNotNull(tcsAdsMore);
 
-        /** Test 7.4 */
-        //При нажатии на вторую кнопку становиться активной поле ввода
-        solo.clickOnView(r_custom_server);
-        solo.sleep(500);
-        assertTrue(r_custom_server.isChecked()); //вторая активная
-        solo.sleep(500);
-        EditText editText = (EditText) solo.getView("et_server_ip");
-        solo.sleep(500);
-        assertTrue(editText.isEnabled()); //На полле ввода можно нажать
-        solo.sleep(500);
-        solo.clearEditText(editText);
-        solo.sleep(100);
-        //Вписать сервер
-        solo.enterText(editText, "kovalek");
-        solo.sleep(1000);
-        solo.clearEditText(editText); //очистить по окончанию теста
+        //TODO : Доделать остальные view на экране: второй Learn more, Connect
 
-        /** Test 7.5 */
-        //При нажатии на первую кнопку она становиться активной, а полле воода нет
-        solo.clickOnView(r_default_server);
-        solo.sleep(500);
-        assertTrue(r_default_server.isChecked()); //первая активная
-        solo.sleep(500);
-        assertFalse(editText.isEnabled());
-        solo.sleep(1000);
+
         solo.goBack();
     }
 
