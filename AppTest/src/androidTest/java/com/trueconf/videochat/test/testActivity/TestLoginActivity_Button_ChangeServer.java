@@ -1,7 +1,5 @@
 package com.trueconf.videochat.test.testActivity;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -10,11 +8,6 @@ import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
 
 import junit.framework.AssertionFailedError;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
@@ -35,7 +28,7 @@ public class TestLoginActivity_Button_ChangeServer {
     public void testButtonChangeServer() {
 
         /** 1. Подготовка к запуску приложения */
-        solo.sleep(3000);
+        solo.sleep(4000);
         solo.waitForActivity("Login", 5000);
         Timeout.setSmallTimeout(12000);
 
@@ -209,8 +202,6 @@ public class TestLoginActivity_Button_ChangeServer {
         assertTrue("Login activity is not found", solo.waitForActivity("Login"));
         solo.sleep(1000);
         solo.goBack();
-
-
     }
 }
 

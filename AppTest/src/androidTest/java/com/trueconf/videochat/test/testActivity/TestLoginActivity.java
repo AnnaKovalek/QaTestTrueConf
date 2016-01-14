@@ -96,7 +96,7 @@ public class TestLoginActivity {
 
     /**
      * Test 4
-     * Метод проверки появляющегося меню хардварной кнопки для Alcatel 4027D
+     * Метод проверки появл. меню хардварной кнопки для Alcatel 4027D и меню три точки
      */
 
     public void testHardWardButton() {
@@ -107,13 +107,18 @@ public class TestLoginActivity {
         // solo.sendKey(solo.MENU);
         solo.sleep(3000);
         solo.sendKey(KeyEvent.KEYCODE_MENU);
+        //solo.clickOnView(solo.getView(0));
+        //TODO: необходимо унифицировать нажатие, независимо от локализации
         solo.clickOnMenuItem("About");
         solo.sleep(2000);
         assertTrue("Activity is not found", solo.waitForActivity("About"));
         solo.goBack();
+        assertTrue("Activity is not found", solo.waitForActivity("Login"));
         solo.sleep(5000);
         solo.sendKey(KeyEvent.KEYCODE_MENU);
         solo.clickOnMenuItem("Quit");
+
+       // assertFalse("Приложение не свернулось в трей", solo.waitForActivity("Login"));
         solo.sleep(2000);
 
     }
