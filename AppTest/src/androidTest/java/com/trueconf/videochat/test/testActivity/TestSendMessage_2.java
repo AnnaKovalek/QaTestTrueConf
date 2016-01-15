@@ -1,6 +1,7 @@
 package com.trueconf.videochat.test.testActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.robotium.solo.Solo;
@@ -11,44 +12,42 @@ import junit.framework.AssertionFailedError;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * Класс проверки звонков юзеру
+ * Класс проверки отправки сообщения пользователю по поиску по его ID
+ * проверка перехода на активити Chat
  */
-public class TestCallUser {
+public class TestSendMessage_2 {
     private Solo solo;
 
-    public TestCallUser(Solo solo) {
+    public TestSendMessage_2(Solo solo) {
         this.solo = solo;
     }
 
-    public void testCallUser() {
+    /**
+     * Метод проверки
+     */
 
-        //Запуск приложения
-        solo.sleep(2000);
-        // 1.1 Wait for activity: 'com.trueconf.gui.activities.Login'
+    public void testSendMessage_2() {
+        // Подготовка приложения к запуску
+        solo.sleep(4000);
         solo.waitForActivity("Login", 3000);
-        // 1.2 Set default small timeout to 12000 milliseconds
         Timeout.setSmallTimeout(12000);
-        solo.sleep(2000);
-        // 1.3 Click on Have an account Log in
+        // 1.1 Click on Have an account Log in
         solo.clickOnView(solo.getView("tv_is_have_account"));
-        solo.sleep(3000);
-
-        // Edit login and password
+        solo.sleep(2000);
+        // 1.2 Click on Empty Text View
         solo.clickOnView(solo.getView("et_videochat_id"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_videochat_id"));
         solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "kovalek");
-
+        // 1.3 Enter the text: my password 'pop2233'
         solo.clickOnView(solo.getView("et_password"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_password"));
         solo.enterText((android.widget.EditText) solo.getView("et_password"), "pop2233");
-
+        // 1.4 Click on Login button
         solo.pressSoftKeyboardNextButton();
-        // 1.6 Click on Login
         solo.clickOnView(solo.getView("btn_login_ll"));
         assertTrue("Неверный TrueConf ID или пароль", solo.waitForActivity("ContactTabs"));
-        solo.sleep(1000);
 
-        // 1.7 Проверка стартового уведомления по id
+        // Стартовое уведомление (появляется при условии первого входа в приложения)
         View menuDialogHeader = null;
         try {
             menuDialogHeader = solo.getView("menuDialogHeader");
@@ -84,9 +83,9 @@ public class TestCallUser {
         solo.clickOnText(java.util.regex.Pattern.quote(itemSerch));
         solo.sleep(300);
 
-        //6 Вводим в поле Search имя для поиска : anna_m
+        //6 Вводим в поле Search имя для поиска : kovalek
         solo.clearEditText((android.widget.EditText) solo.getView("search_src_text"));
-        solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "anna_m");
+        solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "kovalek");
         //Wait for 2 second
         solo.sleep(2000);
 
@@ -104,61 +103,58 @@ public class TestCallUser {
 
         //9 Нажимаем на заданную кнопку
 
-        solo.clickOnView(call);
+        solo.clickOnView(information);
+        assertTrue("Activity UserProfile is not found", solo.waitForActivity("UserProfile"));
         solo.sleep(2000);
-
-        /**
+        solo.clickOnView(solo.getView("btn_chat"));
+        assertTrue("Activity Chat is not Found", solo.waitForActivity("Chat"));
+        solo.sleep(1000);
         solo.clickOnView(solo.getView("et_chat_message"));
-        // Send messages n=9
-        int i = 0;
-         while (i < 5) {
-         //Enter the text: 'Test message test'
-         solo.clearEditText((android.widget.EditText) solo.getView("et_chat_message"));
-         solo.enterText((android.widget.EditText) solo.getView("et_chat_message"), "Test message " + i);
-            //Click on ImageView
+        int a = 0;
+        for (; a < 3; a++) {
+            solo.clearEditText((android.widget.EditText) solo.getView("et_chat_message"));
+            solo.enterText((android.widget.EditText) solo.getView("et_chat_message"), "Test test " + a);
             solo.clickOnView(solo.getView("btn_chat_message_send"));
-            i++;
+
         }
-        //11. Выход с текущего состояния
-        solo.goBack();
-        solo.sleep(2000);
-
-
-
-        /** 2. Выход с приложения  */
-        //2.0 Нажатимаем на HomeButton
         solo.clickOnActionBarHomeButton();
-        solo.sleep(300);
-        android.widget.ListView homeListView = solo.getView(ListView.class, 2);
-        solo.sleep(300);
+        solo.sleep(1000);
+        assertTrue("Activity UserProfile is not found", solo.waitForActivity("UserProfile"));
+       // solo.clickOnView(solo.getView("tv_chat_missed_count"));
+        //assertTrue("Activity Chat is not found", solo.waitForActivity("Chat"));
+       // solo.sleep(300);
+        solo.clickOnActionBarHomeButton();
+        assertTrue("Activity ContactTabs is not found", solo.waitForActivity("ContactTabs"));
+      //  solo.setActivityOrientation(solo.LANDSCAPE);
+        //TODO: добавить переключение между fragment layout (address book, chat, call_history)
 
-        //2.1 Определяем Logout
-        String itemLogout = (String) homeListView.getItemAtPosition(11);
-        solo.sleep(300);
+         /** 2. Выход с приложения  */
 
-        //2.2 Прокручиваем список на последнюю позицию
-        solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
-        solo.sleep(300);
+         //2.0 Нажатимаем на HomeButton
+         solo.clickOnActionBarHomeButton();
+         solo.sleep(300);
+         android.widget.ListView homeListView = solo.getView(ListView.class, 2);
+         solo.sleep(300);
 
-        //2.3 Нажимаем на Logout
-        solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
-        solo.sleep(300);
+         //2.1 Определяем Logout
+         String itemLogout = (String) homeListView.getItemAtPosition(11);
+         solo.sleep(300);
 
-        //2.4 проверка на переход Activity Login
-        assertTrue("Login is not found!", solo.waitForActivity("Login"));
-        solo.sleep(300);
-        solo.goBack();
+         //2.2 Прокручиваем список на последнюю позицию
+         solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
+         solo.sleep(300);
 
+         //2.3 Нажимаем на Logout
+         solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
+         solo.sleep(300);
 
+         //2.4 проверка на переход Activity Login
+         assertTrue("Login is not found!", solo.waitForActivity("Login"));
+         solo.sleep(300);
+         solo.goBack();
 
-/**
- // Click on ActionBar - поиск по full_name and ID
- solo.clickOnActionBarItem(1);
-
- */
 
 
     }
-
 
 }

@@ -7,6 +7,7 @@ import com.trueconf.videochat.test.testActivity.TestListNavigationDrawer;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity_Button_ChangeServer;
 import com.trueconf.videochat.test.testActivity.TestSendMessage;
+import com.trueconf.videochat.test.testActivity.TestSendMessage_2;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -22,6 +23,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private TestListNavigationDrawer testListNavigationDrawer;
     private TestSendMessage testSendMessage;
     private TestCallUser testCallUser;
+    private TestSendMessage_2 testSendMessage_2;
 
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
     private static Class<?> launcherActivityClass;
@@ -49,6 +51,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testListNavigationDrawer = new TestListNavigationDrawer(solo);
         testSendMessage = new TestSendMessage(solo);
         testCallUser = new TestCallUser(solo);
+        testSendMessage_2 = new TestSendMessage_2(solo);
         getActivity();
     }
 
@@ -109,11 +112,18 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     }
 
     // ********************************* TestSendMessage******************************************************
-  public void testSendMessage() {
+    public void testSendMessage() {
         testSendMessage.testSendMessage();
     }
 
-  public  void testCallUser () {testCallUser.testCallUser();}
+    public void testCallUser() {
+        testCallUser.testCallUser();
+    }
+
+    public void testSendMessage_2() {
+        testSendMessage_2.testSendMessage_2();
+    }
+
 
     //After
     @Override
