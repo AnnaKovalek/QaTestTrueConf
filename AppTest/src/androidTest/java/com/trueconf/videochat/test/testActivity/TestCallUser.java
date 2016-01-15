@@ -107,13 +107,14 @@ public class TestCallUser {
         solo.clickOnView(chat);
         solo.sleep(2000);
 
+        /**
         solo.clickOnView(solo.getView("et_chat_message"));
         // Send messages n=9
         int i = 0;
-        while (i < 5) {
-            //Enter the text: 'Test message test'
-            solo.clearEditText((android.widget.EditText) solo.getView("et_chat_message"));
-            solo.enterText((android.widget.EditText) solo.getView("et_chat_message"), "Test message " + i);
+         while (i < 5) {
+         //Enter the text: 'Test message test'
+         solo.clearEditText((android.widget.EditText) solo.getView("et_chat_message"));
+         solo.enterText((android.widget.EditText) solo.getView("et_chat_message"), "Test message " + i);
             //Click on ImageView
             solo.clickOnView(solo.getView("btn_chat_message_send"));
             i++;
