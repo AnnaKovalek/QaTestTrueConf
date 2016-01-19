@@ -8,6 +8,7 @@ import com.trueconf.videochat.test.testActivity.TestLoginActivity;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity_Button_ChangeServer;
 import com.trueconf.videochat.test.testActivity.TestSendMessage;
 import com.trueconf.videochat.test.testActivity.TestSendMessage_2;
+import com.trueconf.videochat.test.testActivity.TestUserProfile;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -24,6 +25,8 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private TestSendMessage testSendMessage;
     private TestCallUser testCallUser;
     private TestSendMessage_2 testSendMessage_2;
+    private TestUserProfile testUserProfile;
+
 
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
     private static Class<?> launcherActivityClass;
@@ -52,6 +55,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testSendMessage = new TestSendMessage(solo);
         testCallUser = new TestCallUser(solo);
         testSendMessage_2 = new TestSendMessage_2(solo);
+        testUserProfile = new TestUserProfile(solo);
         getActivity();
     }
 
@@ -111,7 +115,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testListNavigationDrawer.testListNavigationDrawer();
     }
 
-    // ********************************* TestSendMessage******************************************************
+    // ********************************* TestSendMessage ******************************************************
     public void testSendMessage() {
         testSendMessage.testSendMessage();
     }
@@ -122,6 +126,10 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
 
     public void testSendMessage_2() {
         testSendMessage_2.testSendMessage_2();
+    }
+    // ******************************* TestUserProfile ******************************************************
+    public void testUserProfile() {
+        testUserProfile.testUserProfile();
     }
 
 

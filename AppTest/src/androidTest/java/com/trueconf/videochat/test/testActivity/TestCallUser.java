@@ -106,26 +106,27 @@ public class TestCallUser {
 
         solo.clickOnView(call);
         solo.sleep(2000);
+        //TODO: решить проблему с звонками (доступом к ресурсам)
 
         /**
-        solo.clickOnView(solo.getView("et_chat_message"));
-        // Send messages n=9
-        int i = 0;
+         solo.clickOnView(solo.getView("et_chat_message"));
+         // Send messages n=9
+         int i = 0;
          while (i < 5) {
          //Enter the text: 'Test message test'
          solo.clearEditText((android.widget.EditText) solo.getView("et_chat_message"));
          solo.enterText((android.widget.EditText) solo.getView("et_chat_message"), "Test message " + i);
-            //Click on ImageView
-            solo.clickOnView(solo.getView("btn_chat_message_send"));
-            i++;
-        }
-        //11. Выход с текущего состояния
-        solo.goBack();
-        solo.sleep(2000);
+         //Click on ImageView
+         solo.clickOnView(solo.getView("btn_chat_message_send"));
+         i++;
+         }
+         //11. Выход с текущего состояния
+         solo.goBack();
+         solo.sleep(2000);
 
 
 
-        /** 2. Выход с приложения  */
+         /** 2. Выход с приложения  */
         //2.0 Нажатимаем на HomeButton
         solo.clickOnActionBarHomeButton();
         solo.sleep(300);
@@ -148,7 +149,6 @@ public class TestCallUser {
         assertTrue("Login is not found!", solo.waitForActivity("Login"));
         solo.sleep(300);
         solo.goBack();
-
 
 
 /**

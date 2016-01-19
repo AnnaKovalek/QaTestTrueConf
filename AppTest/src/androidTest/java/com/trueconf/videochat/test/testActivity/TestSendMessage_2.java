@@ -72,7 +72,7 @@ public class TestSendMessage_2 {
         solo.sleep(300);
 
         //3 Определяем Search
-        String itemSerch = (String) homeListView_1.getItemAtPosition(7);
+        String itemSearch = (String) homeListView_1.getItemAtPosition(7);
         solo.sleep(300);
 
         //4 Прокручиваем список на последнюю позицию
@@ -80,7 +80,7 @@ public class TestSendMessage_2 {
         solo.sleep(300);
 
         //5 Нажимаем на Search
-        solo.clickOnText(java.util.regex.Pattern.quote(itemSerch));
+        solo.clickOnText(java.util.regex.Pattern.quote(itemSearch));
         solo.sleep(300);
 
         //6 Вводим в поле Search имя для поиска : kovalek
