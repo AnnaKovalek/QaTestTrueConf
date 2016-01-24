@@ -1,7 +1,9 @@
 package com.trueconf.videochat.test.testActivity;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.robotium.solo.Solo;
@@ -83,15 +85,15 @@ public class TestSendMessage_2 {
         solo.clickOnText(java.util.regex.Pattern.quote(itemSearch));
         solo.sleep(300);
 
-        //6 Вводим в поле Search имя для поиска : kovalek
+        //6 Вводим в поле Search имя для поиска : Kovalek
         solo.clearEditText((android.widget.EditText) solo.getView("search_src_text"));
-        solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "kovalek");
+        solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "Kovalek");
         //Wait for 2 second
-        solo.sleep(2000);
+        solo.sleep(3000);
 
         //7 долгое нажатие на поле, для вызова меню
         solo.clickLongInList(1, 0, 1000);
-        solo.sleep(2000);
+        solo.sleep(3000);
 
         //8 Определение всех елементов в данном меню
         android.widget.ListView contactListView_n = solo.getView(ListView.class, 0);
@@ -120,39 +122,53 @@ public class TestSendMessage_2 {
         solo.clickOnActionBarHomeButton();
         solo.sleep(1000);
         assertTrue("Activity UserProfile is not found", solo.waitForActivity("UserProfile"));
-       // solo.clickOnView(solo.getView("tv_chat_missed_count"));
+        // solo.clickOnView(solo.getView("tv_chat_missed_count"));
         //assertTrue("Activity Chat is not found", solo.waitForActivity("Chat"));
-       // solo.sleep(300);
+        // solo.sleep(300);
         solo.clickOnActionBarHomeButton();
         assertTrue("Activity ContactTabs is not found", solo.waitForActivity("ContactTabs"));
-      //  solo.setActivityOrientation(solo.LANDSCAPE);
+        //  solo.setActivityOrientation(solo.LANDSCAPE);
+        solo.sleep(1000);
+        solo.clickOnImage(1);
+        solo.sleep(1000);
+
+
         //TODO: добавить переключение между fragment layout (address book, chat, call_history)
+        // Переключение между fragment layout
+        /**
+         android.widget.FrameLayout listView = solo.getView(FrameLayout.class, 0);
+         View addressBook = (View) listView.getChildAt(0);
+         View chatT = (View) listView.getChildAt(1);
+         View callHistory = (View) listView.getChildAt(2);
+         solo.sleep(1000);
+         solo.clickOnView(chatT);
+         solo.sleep(2000);
+         */
 
-         /** 2. Выход с приложения  */
+        /** 2. Выход с приложения  */
 
-         //2.0 Нажатимаем на HomeButton
-         solo.clickOnActionBarHomeButton();
-         solo.sleep(300);
-         android.widget.ListView homeListView = solo.getView(ListView.class, 2);
-         solo.sleep(300);
+        //2.0 Нажатимаем на HomeButton
+        solo.clickOnActionBarHomeButton();
+        solo.sleep(300);
+        android.widget.ListView homeListView = solo.getView(ListView.class, 2);
+        solo.sleep(300);
 
-         //2.1 Определяем Logout
-         String itemLogout = (String) homeListView.getItemAtPosition(11);
-         solo.sleep(300);
+        //2.1 Определяем Logout
+        String itemLogout = (String) homeListView.getItemAtPosition(11);
+        solo.sleep(300);
 
-         //2.2 Прокручиваем список на последнюю позицию
-         solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
-         solo.sleep(300);
+        //2.2 Прокручиваем список на последнюю позицию
+        solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
+        solo.sleep(300);
 
-         //2.3 Нажимаем на Logout
-         solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
-         solo.sleep(300);
+        //2.3 Нажимаем на Logout
+        solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
+        solo.sleep(300);
 
-         //2.4 проверка на переход Activity Login
-         assertTrue("Login is not found!", solo.waitForActivity("Login"));
-         solo.sleep(300);
-         solo.goBack();
-
+        //2.4 проверка на переход Activity Login
+        assertTrue("Login is not found!", solo.waitForActivity("Login"));
+        solo.sleep(300);
+        solo.goBack();
 
 
     }
