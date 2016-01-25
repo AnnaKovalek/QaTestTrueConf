@@ -2,16 +2,30 @@ package com.trueconf.videochat.test.testActivity;
 
 
 import android.preference.CheckBoxPreference;
+import android.preference.PreferenceCategory;
 import android.view.View;
 import android.widget.ListView;
+
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
 
 import junit.framework.AssertionFailedError;
 
+import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+
+/**
+ * Класс проверки компонентов PreferenceActivity - Settings: checkBoxPreference, ListPreference, EditTextPreference
+ * Настройки по умолчанию:
+ * - Start automatically - isChecked
+ * - Buzz - isChecked
+ * - Synchronization - isChecked
+ **/
+
 
 public class TestSettings {
     private Solo solo;
@@ -20,7 +34,9 @@ public class TestSettings {
         this.solo = solo;
     }
 
-
+    /**
+     * Метод проверки
+     */
     public void testSettings() {
 
         // Подготовка приложения к запуску
@@ -97,9 +113,9 @@ public class TestSettings {
         solo.sleep(500);
 
         //5.1
-        //CheckBoxPreference StartAutomatic
-        CheckBoxPreference itemStartAutomatic = (CheckBoxPreference) settingListView.getItemAtPosition(0);
-        testChecked(itemStartAutomatic, 0);
+        //CheckBoxPreference StartAutomatically
+        CheckBoxPreference itemStartAutomatically = (CheckBoxPreference) settingListView.getItemAtPosition(0);
+        testChecked(itemStartAutomatically, 0);
 
         //TODO settingListView.getItemAtPosition(1) не являеться CheckBoxPreference!!!!!
 
@@ -111,12 +127,52 @@ public class TestSettings {
 
         //5.3
         //CheckBoxPreference AutoReplay
-        CheckBoxPreference itemAutoReplay= (CheckBoxPreference) settingListView.getItemAtPosition(3);
+        CheckBoxPreference itemAutoReplay = (CheckBoxPreference) settingListView.getItemAtPosition(3);
         testChecked(itemAutoReplay, 2);
 
         //TODO settingListView.getItemAtPosition(4) не являеться CheckBoxPreference!!!!!
 
         /** ``````````````````````````````````````````````````````````````````    */
+        //5.4
+        //CheckBoxPreference ReceiveFilter
+        CheckBoxPreference itemReceiveFilterMessages = (CheckBoxPreference) settingListView.getItemAtPosition(5);
+        testChecked(itemReceiveFilterMessages, 3);
+
+
+        //5.5
+        //CheckBoxPreference Buzz
+        // 6 позиция по первому общему ListView (общий список settings)
+        CheckBoxPreference itemBuzz = (CheckBoxPreference) settingListView.getItemAtPosition(6);
+        // 4 позиция по списку CheckBoxPreference
+        testChecked(itemBuzz, 4);
+        solo.sleep(2000);
+
+        //5.6
+        // Background mode
+        PreferenceCategory itemBackgroundMode = (PreferenceCategory) settingListView.getItemAtPosition(7);
+        testBackgroundMode(itemBackgroundMode,0);
+        solo.sleep(200);
+
+
+        solo.sleep(1000);
+
+        //TODO settingListView.getItemAtPosition(8) не являеться CheckBoxPreference!!!!!
+        solo.scrollListToLine(settingListView, settingListView.getLastVisiblePosition());
+        solo.sleep(500);
+
+
+
+        //5.7
+        // CheckBoxPreference TrueConf status
+        /**
+        CheckBoxPreference itemTrueConfStatus = (CheckBoxPreference) settingListView.getItemAtPosition(9);
+        testChecked(itemTrueConfStatus, 6);
+        solo.sleep(1000);
+         */
+
+
+
+
 
         solo.goBack();
 
@@ -140,7 +196,7 @@ public class TestSettings {
         solo.sleep(300);
 
         //2.4 проверка на переход Activity Login
-        assertTrue("Login is not found!", solo.waitForActivity("Login"));
+        assertTrue("Activity Login is not found!", solo.waitForActivity("Login"));
         solo.sleep(300);
         solo.goBack();
 
@@ -163,7 +219,16 @@ public class TestSettings {
             solo.sleep(1000);
             return false;
         }
+    }
+        private void testBackgroundMode (PreferenceCategory itemAtPosition, int item) {
+        solo.clickOnButton(item);
+            solo.sleep(1000);
 
     }
+
+
+
+
+
 
 }

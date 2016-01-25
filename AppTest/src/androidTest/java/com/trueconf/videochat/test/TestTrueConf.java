@@ -130,12 +130,14 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     public void testSendMessage_2() {
         testSendMessage_2.testSendMessage_2();
     }
+
     // ******************************* TestUserProfile ******************************************************
     public void testUserProfile() {
         testUserProfile.testUserProfile();
     }
 
-    public void testSettings(){
+    // ******************************* TestSettings ************************************************************
+    public void testSettings() {
         testSettings.testSettings();
     }
 
