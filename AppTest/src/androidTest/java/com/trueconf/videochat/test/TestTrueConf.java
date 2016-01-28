@@ -2,6 +2,7 @@ package com.trueconf.videochat.test;
 
 import com.robotium.solo.*;
 import com.trueconf.videochat.test.testActivity.TestCallUser;
+import com.trueconf.videochat.test.testActivity.TestCreateConference;
 import com.trueconf.videochat.test.testActivity.TestFirstStartApp;
 import com.trueconf.videochat.test.testActivity.TestListNavigationDrawer;
 import com.trueconf.videochat.test.testActivity.TestLoginActivity;
@@ -28,6 +29,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private TestSendMessage_2 testSendMessage_2;
     private TestUserProfile testUserProfile;
     private TestSettings testSettings;
+    private TestCreateConference testCreateConference;
 
 
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
@@ -59,6 +61,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testSendMessage_2 = new TestSendMessage_2(solo);
         testUserProfile = new TestUserProfile(solo);
         testSettings = new TestSettings(solo);
+        testCreateConference = new TestCreateConference(solo);
         getActivity();
     }
 
@@ -136,10 +139,15 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testUserProfile.testUserProfile();
     }
 
+
     // ******************************* TestSettings ************************************************************
     public void testSettings() {
         testSettings.testSettings();
     }
+
+    //****************************** TestCreateConference *******************************************************
+    public void testCreateConference (){ testCreateConference.testCreateConference();}
+
 
     //After
     @Override
