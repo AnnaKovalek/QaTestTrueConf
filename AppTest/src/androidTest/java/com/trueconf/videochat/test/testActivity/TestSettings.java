@@ -102,7 +102,7 @@ public class TestSettings extends JReport {
             solo.sleep(1000);
             assertTextCase("Проверка перехода на Navigation при нажатии HomeButton");
 
-            //3 Определяем setting
+            //3 Определяем settings
             String itemSetting = (String) homeListView.getItemAtPosition(8);
 
             solo.sleep(300);

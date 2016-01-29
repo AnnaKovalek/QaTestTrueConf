@@ -8,6 +8,9 @@ import com.robotium.solo.Timeout;
 
 import junit.framework.AssertionFailedError;
 
+import java.util.ArrayList;
+
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 public class TestCreateConference {
@@ -73,17 +76,22 @@ public class TestCreateConference {
         solo.sleep(1000);
         assertTrue("Activity Call is not found", solo.waitForActivity("Call"));
         solo.sleep(1000);
-        solo.pressSoftKeyboardNextButton();
-        solo.clickOnView(solo.getView("btn_share"));
+/**
+        ArrayList<View> currentViews = solo.getCurrentViews();
+        assertEquals(currentViews, 1);
+ */
+
+       // solo.pressSoftKeyboardNextButton();
+       // solo.clickOnView(solo.getView("btn_share"));
         solo.sleep(2000);
 
       //  solo.pressSoftKeyboardNextButton();
        //solo.clickOnView(solo.getView("btn_hangup"));
-        solo.sleep(1000);
+       // solo.sleep(1000);
 
 
 
-        //  solo.clickOnView(solo.getView("rl_call"));
+
 
 
     }
