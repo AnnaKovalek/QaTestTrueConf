@@ -11,6 +11,7 @@ import com.trueconf.videochat.test.testActivity.TestLoginActivity_Button_ChangeS
 import com.trueconf.videochat.test.testActivity.TestSendMessage;
 import com.trueconf.videochat.test.testActivity.TestSendMessage_2;
 import com.trueconf.videochat.test.testActivity.TestSettings;
+import com.trueconf.videochat.test.testActivity.TestSettingsBackgroundMode;
 import com.trueconf.videochat.test.testActivity.TestUserProfile;
 
 import android.test.ActivityInstrumentationTestCase2;
@@ -30,6 +31,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private TestSendMessage_2 testSendMessage_2;
     private TestUserProfile testUserProfile;
     private TestSettings testSettings;
+    private TestSettingsBackgroundMode testSettingsBackgroundMode;
     private TestCreateConference testCreateConference;
     private TestActivityRegister testActivityRegister;
 
@@ -63,6 +65,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testSendMessage_2 = new TestSendMessage_2(solo);
         testUserProfile = new TestUserProfile(solo);
         testSettings = new TestSettings(solo);
+        testSettingsBackgroundMode = new TestSettingsBackgroundMode(solo);
         testCreateConference = new TestCreateConference(solo);
         testActivityRegister = new TestActivityRegister(solo);
         getActivity();
@@ -147,6 +150,9 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     public void testSettings() {
         testSettings.testSettings();
     }
+
+    public void testSettingsBackgroundMode (){ testSettingsBackgroundMode.testSettings();}
+
 
     //****************************** TestCreateConference *******************************************************
     public void testCreateConference (){ testCreateConference.testCreateConference();}

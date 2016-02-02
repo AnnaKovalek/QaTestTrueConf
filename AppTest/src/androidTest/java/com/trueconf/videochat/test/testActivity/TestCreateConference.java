@@ -2,6 +2,7 @@ package com.trueconf.videochat.test.testActivity;
 
 
 import android.view.View;
+import android.widget.ToggleButton;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
@@ -11,6 +12,7 @@ import junit.framework.AssertionFailedError;
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 public class TestCreateConference {
@@ -30,7 +32,6 @@ public class TestCreateConference {
         solo.clickOnView(solo.getView("et_videochat_id"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_videochat_id"));
         solo.enterText((android.widget.EditText) solo.getView("et_videochat_id"), "kovalek");
-        // 1.3 Enter the text: my password 'pop2233'
         solo.clickOnView(solo.getView("et_password"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_password"));
         solo.enterText((android.widget.EditText) solo.getView("et_password"), "pop2233");
@@ -47,7 +48,6 @@ public class TestCreateConference {
             //nothing
         }
         if (menuDialogHeader != null) {
-            //если активное, нажимаем Back
             solo.goBack();
         }
         solo.sleep(1000);
@@ -59,14 +59,40 @@ public class TestCreateConference {
         solo.clickOnView(solo.getView("et_conference_topic"));
         solo.clearEditText((android.widget.EditText) solo.getView("et_conference_topic"));
         solo.enterText((android.widget.EditText) solo.getView("et_conference_topic"), "MyConference");
+        solo.clickOnView(solo.getView("cb_automatic_entry"));
+        solo.sleep(200);
+        ToggleButton toggleButton = (ToggleButton) solo.getView("cb_automatic_entry");
+        assertTrue("ToggleButton is not found", solo.isToggleButtonChecked(0));
+        solo.sleep(500);
+        //   solo.isToggleButtonChecked(0);
+        solo.clickOnView(toggleButton);
+        assertFalse("ToggleButton in position ON", solo.isToggleButtonChecked(0));
+        solo.sleep(100);
         solo.pressSoftKeyboardNextButton();
         solo.clickOnView(solo.getView("btn_add_members"));
         //TODO: получить список возможных участников конференции (варианты кто онлайн, проверка необходимо участника для добавления в конфу)
+
+        /**ArrayList<View> currentViews = solo.getCurrentViews();
+         assertEquals(currentViews, 1);
+         */
+      //  solo.searchToggleButton("cb_automatic_entry");
+
+        solo.clickOnView(solo.getView("cb_automatic_entry"));
+//        solo.clickOnToggleButton("cb_automatic_entry");
+      //  ToggleButton buttonAutomaticEntry = (ToggleButton)
+      //  solo.clickOnToggleButton("NO");
+      //  ToggleButton toggleButton = (ToggleButton) solo.getView("cb_automatic_entry");
+       // assertTrue("ToggleButton is not found", solo.isToggleButtonChecked(0));
+
+
+
+
 
 
         // solo.clickOnText("Add Participants");
         solo.sleep(200);
         solo.clickOnText("Anna Kovalek");
+        solo.clickOnView(solo.getView("btn_add_members"));
         // solo.clickOnText("Igor Shtykh");
         solo.sleep(200);
 
@@ -77,21 +103,17 @@ public class TestCreateConference {
         assertTrue("Activity Call is not found", solo.waitForActivity("Call"));
         solo.sleep(1000);
 /**
-        ArrayList<View> currentViews = solo.getCurrentViews();
-        assertEquals(currentViews, 1);
+ ArrayList<View> currentViews = solo.getCurrentViews();
+ assertEquals(currentViews, 1);
  */
 
-       // solo.pressSoftKeyboardNextButton();
-       // solo.clickOnView(solo.getView("btn_share"));
+        // solo.pressSoftKeyboardNextButton();
+        // solo.clickOnView(solo.getView("btn_share"));
         solo.sleep(2000);
 
-      //  solo.pressSoftKeyboardNextButton();
-       //solo.clickOnView(solo.getView("btn_hangup"));
-       // solo.sleep(1000);
-
-
-
-
+        //  solo.pressSoftKeyboardNextButton();
+        //solo.clickOnView(solo.getView("btn_hangup"));
+        // solo.sleep(1000);
 
 
     }

@@ -1,8 +1,6 @@
 package com.trueconf.videochat.test.testJReport;
 
-/**
- * Created by malex on 14.01.16.
- */
+
 public class ResourcesReport {
 
     public final String index_01 = "<html>\n" +
