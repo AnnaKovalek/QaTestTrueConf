@@ -220,20 +220,15 @@ public class TestListNavigationDrawer {
 
     private void clickBackAndHomeButtonInviteFriends(String nameButton, String activityId) {
         solo.sleep(2000);
-        // 1. нажимает на выбранную кнопку
         solo.clickOnMenuItem(nameButton);
         solo.sleep(3000);
-        // 2. проверка перехода на заданное активити
         assertTrue(" Ожидался вызов активити: " + activityId + " при нажатии: " + nameButton + " ,а вызвалось: " + solo.getCurrentActivity().getLocalClassName(),
                 solo.waitForActivity(activityId));
         solo.sleep(2000);
-        // 3. нажатие на кнопку возврата назад (HomeButton)
         solo.goBack();
         solo.sleep(2000);
-        // 4. нажатие на кнопку вызова navigation drawer (HomeButton)
         solo.clickOnActionBarHomeButton();
         solo.sleep(2000);
-        // 5. проверка перехода на navigation drawer
         //TODO проверка перехода на navigation drawer
 
     }

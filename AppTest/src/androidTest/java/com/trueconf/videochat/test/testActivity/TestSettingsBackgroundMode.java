@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by anna on 02.02.16.
- * Класс проверки компонентов всплывающего меню BackgroundMode (по умолчанию первый radiobutton is checked)
+ * Класс проверки компонентов всплывающего меню BackgroundMode (по умолчанию первый RadioButton is checked) и нажатие на другие RadioButton
  */
+
 public class TestSettingsBackgroundMode extends JReport {
 
     private String errorMessage;
@@ -30,7 +31,7 @@ public class TestSettingsBackgroundMode extends JReport {
 
     public void testSettings() {
         try {
-            initReport("TestSettingsBackgroundMode : Lang: eng : vertical orientation", "Описание теста ******************");
+            initReport("TestSettingsBackgroundMode : Lang: eng : vertical orientation", "Класс проверки компонентов всплывающего меню BackgroundMode");
 
             /** 1. Подготовка к запуску приложения */
             goToBeginTest();
@@ -55,7 +56,6 @@ public class TestSettingsBackgroundMode extends JReport {
                 clickBackgroundMode();
             }
             clickOnCustomView(idElement, 0);
-        //    solo.clickOnText("Cancel");
 
 
             //TODO нужно найти кнопку Cancel
@@ -99,7 +99,7 @@ public class TestSettingsBackgroundMode extends JReport {
         summary = itemBackgroundMode.getSummary();
         solo.clickOnText(summary.toString());
         solo.sleep(300);
-     //   solo.clickOnText("Cancel");
+        //   solo.clickOnText("Cancel");
     }
 
     private void goToBeginTest() {
@@ -136,10 +136,8 @@ public class TestSettingsBackgroundMode extends JReport {
         try {
             menuDialogHeader = solo.getView("menuDialogHeader");
         } catch (AssertionFailedError e) {
-            //nothing
         }
         if (menuDialogHeader != null) {
-            //если активное, нажимаем Back
             assertTextCaseActivity("Проверка стартового уведомления по id на Activity: ContactTabs", "ContactTabs"); // :6 case
             solo.goBack();
         }
@@ -165,7 +163,6 @@ public class TestSettingsBackgroundMode extends JReport {
         //2.3 Нажимаем на Logout
         solo.clickOnText(java.util.regex.Pattern.quote(itemLogout));
 
-        //2.4 проверка на переход Activity Login
         assertTextCaseActivity("Проверка перехода на Activity: Login", "Login"); // :8 case
         solo.goBack();
 
@@ -190,7 +187,6 @@ public class TestSettingsBackgroundMode extends JReport {
 
         solo.sleep(300);
 
-        //2.4 прокручиваем список
         solo.scrollListToLine(homeListView, homeListView.getLastVisiblePosition());
         solo.sleep(1500);
         //2.5. нажимает на выбранную кнопку
@@ -201,7 +197,7 @@ public class TestSettingsBackgroundMode extends JReport {
     private void goToSettingsHoneycomb() {
         // 3.1. проверка перехода на заданное активити
         assertTextCaseActivity("Проверка перехода на активити SettingsHoneycomb при нажати на setting", "SettingsHoneycomb");
-        //3.2  Определяе ListView компонентов
+        //3.2  Определяем ListView компонентов
         settingListView = solo.getView(ListView.class, 0);
     }
 
