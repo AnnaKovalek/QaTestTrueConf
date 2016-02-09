@@ -14,7 +14,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 /**
- * C
+ *
  */
 public class TestCallUserFromInformation {
 
@@ -33,7 +33,6 @@ public class TestCallUserFromInformation {
         solo.sleep(2000);
         // 1.1 Wait for activity: 'com.trueconf.gui.activities.Login'
         solo.waitForActivity("Login", 3000);
-        // 1.2 Set default small timeout to 12000 milliseconds
         Timeout.setSmallTimeout(12000);
         solo.sleep(2000);
         // 1.3 Click on Have an account Log in
@@ -67,56 +66,55 @@ public class TestCallUserFromInformation {
         }
 
 
-            /** 3 Поиск контакта */
-            //1. Определили главнй лист
-            android.widget.ListView contactListView = solo.getView(ListView.class, 0);
-            solo.scrollListToLine(contactListView, contactListView.getFirstVisiblePosition());
-            solo.sleep(800);
+        /** 3 Поиск контакта */
+        //1. Определили главнй лист
+        android.widget.ListView contactListView = solo.getView(ListView.class, 0);
+        solo.scrollListToLine(contactListView, contactListView.getFirstVisiblePosition());
+        solo.sleep(800);
 
-            //2. Нажатимаем на HomeButton
-            solo.clickOnActionBarHomeButton();
-            solo.sleep(800);
+        solo.clickOnActionBarHomeButton();
+        solo.sleep(800);
 
-            //3. Позиция Search № 7 в списке
-            String itemSearch = findDrawerListElement(7);
+        //3. Позиция Search № 7 в списке
+        String itemSearch = findDrawerListElement(7);
 
-            solo.sleep(300);
+        solo.sleep(300);
 
-            //4 Прокручиваем список на последнюю позицию
-            solo.scrollListToLine(homeListView_2, (int) homeListView_2.getLastVisiblePosition());
-            solo.sleep(300);
+        //4 Прокручиваем список на последнюю позицию
+        solo.scrollListToLine(homeListView_2, (int) homeListView_2.getLastVisiblePosition());
+        solo.sleep(300);
 
-            //5 Нажимаем на Search
-            solo.clickOnText(java.util.regex.Pattern.quote(itemSearch));
-            solo.sleep(300);
+        //5 Нажимаем на Search
+        solo.clickOnText(java.util.regex.Pattern.quote(itemSearch));
+        solo.sleep(300);
 
-            //6 Вводим в поле Search имя для поиска : anna_m
-            solo.clearEditText((android.widget.EditText) solo.getView("search_src_text"));
-            solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "anna_m");
-            //Wait for 2 second
-            solo.sleep(1000);
+        //6 Вводим в поле Search имя для поиска : anna_m
+        solo.clearEditText((android.widget.EditText) solo.getView("search_src_text"));
+        solo.enterText((android.widget.EditText) solo.getView("search_src_text"), "anna_m");
+        //Wait for 2 second
+        solo.sleep(1000);
 
-            //7 долгое нажатие на поле, для вызова меню
-            solo.clickLongInList(1, 0, 1000);
-            solo.sleep(800);
+        //7 долгое нажатие на поле, для вызова меню
+        solo.clickLongInList(1, 0, 1000);
+        solo.sleep(800);
 
-            //8 Определение всех елементов в данном меню
-            android.widget.ListView contactListView_n = solo.getView(ListView.class, 0);
-            View call = (View) contactListView_n.getChildAt(0);
-            View chat = (View) contactListView_n.getChildAt(1);
-            View buzz = (View) contactListView_n.getChildAt(2);
-            View information = (View) contactListView_n.getChildAt(3);
-            solo.sleep(800);
+        //8 Определение всех елементов в данном меню
+        android.widget.ListView contactListView_n = solo.getView(ListView.class, 0);
+        View call = (View) contactListView_n.getChildAt(0);
+        View chat = (View) contactListView_n.getChildAt(1);
+        View buzz = (View) contactListView_n.getChildAt(2);
+        View information = (View) contactListView_n.getChildAt(3);
+        solo.sleep(800);
 
-            //9 Нажимаем на заданную кнопку
+        //9 Нажимаем на заданную кнопку
 
-            solo.clickOnView(information);
-            solo.sleep(200);
-            assertTrue("Activity UserProfile is not found", solo.waitForActivity("UserProfile"));
-            solo.sleep(3000);
+        solo.clickOnView(information);
+        solo.sleep(200);
+        assertTrue("Activity UserProfile is not found", solo.waitForActivity("UserProfile"));
+        solo.sleep(3000);
 
         int num = 1;
-        while (num < 10) {
+        while (num < 20) {
 
             solo.pressSoftKeyboardNextButton();
             solo.clickOnView(solo.getView("btn_call"));
