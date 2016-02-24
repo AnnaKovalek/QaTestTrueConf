@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/home/anna/AndroidStudioProjects/QaTestTrueConf/AppTest/build/intermediates/res/merged/release/values/values.xml",
+        "outputFile": "/home/anna/StudioProjects/QaTestTrueConf/AppTest/build/intermediates/res/merged/release/values/values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 93
                 },
                 "from": {
-                    "file": "/home/anna/AndroidStudioProjects/QaTestTrueConf/AppTest/src/main/res/values/strings.xml",
+                    "file": "/home/anna/StudioProjects/QaTestTrueConf/AppTest/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

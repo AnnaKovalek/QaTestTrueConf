@@ -26,7 +26,6 @@ public class TestFirstStartApp extends JReport {
         try {
             initReport("testCorrectLogin", "Метод проверки первой авторизации при введении корректных значений TrueConfId и password, проверки уведомления menuDialogHeader"); // :1 Begin Report
 
-
             /** 1. Подготовка к запуску приложения */
             //1.1 Проверка перехода на Activity: Login
             solo.waitForActivity("Login", 3000);

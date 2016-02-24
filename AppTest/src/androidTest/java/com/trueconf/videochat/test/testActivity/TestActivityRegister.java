@@ -1,18 +1,15 @@
 package com.trueconf.videochat.test.testActivity;
 
 
-import android.view.View;
 import android.webkit.WebView;
 
 import com.robotium.solo.By;
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
 
-import java.util.ArrayList;
-
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+
 
 
 /**

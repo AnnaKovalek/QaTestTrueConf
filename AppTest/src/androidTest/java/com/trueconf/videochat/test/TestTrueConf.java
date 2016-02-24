@@ -37,7 +37,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     private TestActivityRegister testActivityRegister;
     private TestCallUserFromInformation testCallUserFromInformation;
 
-
     private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "com.trueconf.gui.activities.Login";
     private static Class<?> launcherActivityClass;
 
@@ -114,7 +113,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     // TestFirstStartApp: Test 1
     public void testFirstLoginToListActivityAndBack() {
         testFirstStartApp.testCorrectLogin();
-
     }
 
     // ****************************  TestLoginActivity_Button_ChangeServer    ******************************
@@ -144,7 +142,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testCallUserFromInformation.testCallUserFromInformation();
     }
 
-
     public void testSendMessage_2() {
         testSendMessage_2.testSendMessage_2();
     }
@@ -153,7 +150,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     public void testUserProfile() {
         testUserProfile.testUserProfile();
     }
-
 
     // ******************************* TestSettings ************************************************************
     public void testSettings() {
@@ -164,7 +160,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testSettingsBackgroundMode.testSettings();
     }
 
-
     //****************************** TestCreateConference *******************************************************
     public void testCreateConference() {
         testCreateConference.testCreateConference();
@@ -174,7 +169,6 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     public void testActivityRegister() {
         testActivityRegister.testActivityRegister();
     }
-
 
     //After
     @Override
