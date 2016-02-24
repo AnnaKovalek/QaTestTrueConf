@@ -5,6 +5,7 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
+import com.trueconf.videochat.test.testJReport.modelJMail.CreateEmail;
 import com.trueconf.videochat.test.testJReport.JReport;
 
 import junit.framework.AssertionFailedError;
@@ -100,6 +101,8 @@ public class TestFirstStartApp extends JReport {
         } finally {
             // :11 END Report
             destroyReport(errorMessage);
+            // Send Email
+            CreateEmail.instance(); // Send email
         }
 
     }

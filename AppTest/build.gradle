@@ -28,6 +28,9 @@ dependencies {
     androidTestCompile 'info.cukes:cucumber-java:1.1.8'
     androidTestCompile 'info.cukes:cucumber-html:0.2.3'
     androidTestCompile ('info.cukes:cucumber-android:1.2.2')
+    androidTestCompile fileTree(dir: 'libs', include: 'activation.jar')
+    androidTestCompile fileTree(dir: 'libs', include: 'additionnal.jar')
+    androidTestCompile fileTree(dir: 'libs', include: 'mail.jar')
 
     androidTestCompile ('info.cukes:cucumber-junit:1.1.8')
             {

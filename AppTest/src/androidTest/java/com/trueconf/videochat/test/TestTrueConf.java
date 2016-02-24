@@ -114,6 +114,7 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     // TestFirstStartApp: Test 1
     public void testFirstLoginToListActivityAndBack() {
         testFirstStartApp.testCorrectLogin();
+
     }
 
     // ****************************  TestLoginActivity_Button_ChangeServer    ******************************
@@ -138,7 +139,10 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
     public void testCallUser() {
         testCallUser.testCallUser();
     }
-    public void testCallUserFromInformation () {testCallUserFromInformation.testCallUserFromInformation();}
+
+    public void testCallUserFromInformation() {
+        testCallUserFromInformation.testCallUserFromInformation();
+    }
 
 
     public void testSendMessage_2() {
@@ -156,14 +160,20 @@ public class TestTrueConf extends ActivityInstrumentationTestCase2 {
         testSettings.testSettings();
     }
 
-    public void testSettingsBackgroundMode (){ testSettingsBackgroundMode.testSettings();}
+    public void testSettingsBackgroundMode() {
+        testSettingsBackgroundMode.testSettings();
+    }
 
 
     //****************************** TestCreateConference *******************************************************
-    public void testCreateConference (){ testCreateConference.testCreateConference();}
+    public void testCreateConference() {
+        testCreateConference.testCreateConference();
+    }
 
     //****************************** TestActivityRegister *******************************************************
-    public void testActivityRegister (){ testActivityRegister.testActivityRegister();}
+    public void testActivityRegister() {
+        testActivityRegister.testActivityRegister();
+    }
 
 
     //After
