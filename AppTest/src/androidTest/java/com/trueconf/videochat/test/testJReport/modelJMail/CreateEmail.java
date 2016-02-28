@@ -12,7 +12,8 @@ public class CreateEmail {
 
         //Отправляем емайл
         //  JMail mail = new JMail(); // поумолчанию отправка
-        JMail mail = new JMail(message());    // или со своим сообшением
+
+        JMail mail = new JMail(message());    // или со своим сообщением
         mail.addAttachment(zipSource);
         mail.send();
 

@@ -12,6 +12,7 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.BodyPart;
+import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -26,7 +27,7 @@ public class JMail extends javax.mail.Authenticator {
     private String _user;
     private String _pass;
 
-    private String[] _to = {"alexmaximovj@gmail.com"};
+    private String[] _to = {"anna.kovalek@gmail.com"};
     private String _from;
 
     private String _port;
@@ -52,7 +53,7 @@ public class JMail extends javax.mail.Authenticator {
         _user = "ykresp"; // username : Логин аккаунта GMAIL
         _pass = "2687484a"; // password : Пароль аккаунта GMAIL
         _from = "TrueConf"; // email sent from
-        _subject = "alexmaximovj@gmail.com"; // email subject
+        _subject = "anna.kovalek@gmail.com"; // email subject
         _body = "Report TrueConf QA Android"; // email body
 
         _debuggable = false; // debug mode on or off - default off
@@ -78,7 +79,7 @@ public class JMail extends javax.mail.Authenticator {
         _user = "ykresp"; // username : Логин аккаунта GMAIL
         _pass = "2687484a"; // password : Пароль аккаунта GMAIL
         _from = "TrueConf"; // email sent from
-        _subject = "alexmaximovj@gmail.com"; // email subject
+        _subject = "anna.kovalek@gmail.com"; // email subject
         _body = message; // email body
 
         _debuggable = false; // debug mode on or off - default off
@@ -102,7 +103,7 @@ public class JMail extends javax.mail.Authenticator {
         if (!_user.equals("") && !_pass.equals("") && _to.length > 0 && !_from.equals("") && !_subject.equals("") && !_body.equals("")) {
             Session session = Session.getInstance(props, this);
 
-            MimeMessage msg = new MimeMessage(session);
+            final MimeMessage msg = new MimeMessage(session);
             try {
                 msg.setFrom(new InternetAddress(_from));
 
@@ -124,7 +125,19 @@ public class JMail extends javax.mail.Authenticator {
                 msg.setContent(_multipart);
 
                 // send email
-                Transport.send(msg);
+               Transport.send(msg);
+              /**  Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Transport.send(msg);
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+               */
             } catch (Exception e) {
                 Log.d("MyTag", "Exception -> send()");
             }

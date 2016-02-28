@@ -77,6 +77,7 @@ public class IOReport extends ResourcesReport {
             try {
                 out.print(this.stringBuilder.toString());
             } finally {
+                if (out!=null)
                 out.close();
             }
         } catch (IOException e) {

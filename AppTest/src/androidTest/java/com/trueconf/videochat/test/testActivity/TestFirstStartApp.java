@@ -101,7 +101,15 @@ public class TestFirstStartApp extends JReport {
             // :11 END Report
             destroyReport(errorMessage);
             // Send Email
-            CreateEmail.instance(); // Send email
+            solo.sleep(3000);
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    CreateEmail.instance(); // Send email
+                }
+            });
+            thread.start();
+           // CreateEmail.instance(); // Send email
         }
 
     }
