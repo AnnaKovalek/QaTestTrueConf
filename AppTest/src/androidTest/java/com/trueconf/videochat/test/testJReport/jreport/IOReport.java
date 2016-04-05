@@ -1,6 +1,9 @@
-package com.trueconf.videochat.test.testJReport;
+package com.trueconf.videochat.test.testJReport.jreport;
 
 import android.os.Environment;
+
+import com.trueconf.videochat.test.testJReport.model.Test;
+import com.trueconf.videochat.test.testJReport.model.TestCase;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,48 +75,54 @@ public class IOReport extends ResourcesReport {
 
         this.stringBuilder.append(index_03);
 
+        PrintWriter out = null;
         try {
-            PrintWriter out = new PrintWriter(fileDestination.getAbsoluteFile());
-            try {
-                out.print(this.stringBuilder.toString());
-            } finally {
-                if (out!=null)
+            out = new PrintWriter(fileDestination.getAbsoluteFile());
+            out.print(stringBuilder.toString());
+        } catch (IOException ignored) {
+        }finally {
+            if(out!=null) {
+                out.flush();
                 out.close();
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+
         for (TestCase iter : testCases) {
             copy(iter.getImage());
         }
         deleteImage();
-
     }
 
     private void copy(String image) {
+        FileChannel sourceChannel = null;
+        FileChannel destChannel= null;
         try {
             File source = new File(Environment.getExternalStorageDirectory() + "/Robotium-Screenshots/" + image + ".jpg");
             File dest = new File(Environment.getExternalStorageDirectory() + "/Robotium-Screenshots/report_" + format + "/img/" + image + ".jpg");
+
+            fileDestination.createNewFile();
+
+           sourceChannel = new FileInputStream(source).getChannel();
+            destChannel = new FileOutputStream(dest).getChannel();
+            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+
+            source.delete();
+
+
+
+        } catch (Exception ignored) {
+        } finally {
             try {
-                fileDestination.createNewFile();
+                if(sourceChannel!=null)
+                sourceChannel.close();
+
+                if(destChannel!=null)
+                destChannel.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            FileChannel sourceChannel = new FileInputStream(source).getChannel();
-            try {
-                FileChannel destChannel = new FileOutputStream(dest).getChannel();
-                try {
-                    destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-                } finally {
-                    destChannel.close();
-                }
-            } finally {
-                sourceChannel.close();
-                source.delete();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -121,8 +130,8 @@ public class IOReport extends ResourcesReport {
         try {
             File source = new File(Environment.getExternalStorageDirectory() + "/Robotium-Screenshots/init.jpg");
             source.delete();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ignored) {
+
         }
     }
 }

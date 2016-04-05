@@ -1,4 +1,4 @@
-package com.trueconf.videochat.test.testJReport.modelJMail;
+package com.trueconf.videochat.test.testJReport.jmail;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

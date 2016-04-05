@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
-import com.trueconf.videochat.test.testJReport.JReport;
+import com.trueconf.videochat.test.testJReport.jreport.JReport;
 
 import junit.framework.AssertionFailedError;
 

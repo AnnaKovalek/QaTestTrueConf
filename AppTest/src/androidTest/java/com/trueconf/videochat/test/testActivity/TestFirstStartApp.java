@@ -5,8 +5,7 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 import com.robotium.solo.Timeout;
-import com.trueconf.videochat.test.testJReport.modelJMail.CreateEmail;
-import com.trueconf.videochat.test.testJReport.JReport;
+import com.trueconf.videochat.test.testJReport.jreport.JReport;
 
 import junit.framework.AssertionFailedError;
 
@@ -91,26 +90,12 @@ public class TestFirstStartApp extends JReport {
             solo.goBack();
 
             //Выход с репорта в конце
-        } catch (Exception e) {
-            errorMessage = e.getMessage();
-            throw new RuntimeException(e);
-        } catch (AssertionFailedError e) {
+        } catch (Exception | AssertionFailedError e) {
             errorMessage = e.getMessage();
             throw new RuntimeException(e);
         } finally {
             // :11 END Report
             destroyReport(errorMessage);
-            // Send Email
-            solo.sleep(3000);
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    CreateEmail.instance(); // Send email
-                }
-            });
-            thread.start();
-           // CreateEmail.instance(); // Send email
         }
-
     }
 }

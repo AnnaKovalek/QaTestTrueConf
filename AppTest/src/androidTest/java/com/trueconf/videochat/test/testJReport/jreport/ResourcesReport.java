@@ -1,5 +1,4 @@
-package com.trueconf.videochat.test.testJReport;
-
+package com.trueconf.videochat.test.testJReport.jreport;
 
 public class ResourcesReport {
 

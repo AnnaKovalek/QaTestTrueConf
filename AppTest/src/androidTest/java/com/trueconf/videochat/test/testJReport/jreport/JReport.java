@@ -1,7 +1,10 @@
-package com.trueconf.videochat.test.testJReport;
+package com.trueconf.videochat.test.testJReport.jreport;
 
 
 import com.robotium.solo.Solo;
+import com.trueconf.videochat.test.testJReport.model.Test;
+import com.trueconf.videochat.test.testJReport.model.TestCase;
+import com.trueconf.videochat.test.testJReport.jmail.CreateEmail;
 
 import junit.framework.AssertionFailedError;
 
@@ -82,6 +85,7 @@ public class JReport extends IOReport {
 
     protected void destroyReport(String errorMesage) {
         destroy(test, errorMesage);
+        CreateEmail.instance();
     }
 
     public boolean getSuccess() {

@@ -22,14 +22,14 @@ repositories {
 apply plugin: 'com.android.application'
 
 dependencies {
-    androidTestCompile fileTree(dir: 'libs', include: 'robotium-solo-5.5.3.jar')
-    androidTestCompile fileTree(dir: 'libs', include: 'activation.jar')
-    androidTestCompile fileTree(dir: 'libs', include: 'additionnal.jar')
-    androidTestCompile fileTree(dir: 'libs', include: 'mail.jar')
+    androidTestCompile fileTree(include: 'robotium-solo-5.5.3.jar', dir: 'libs')
+    androidTestCompile fileTree(include: 'activation.jar', dir: 'libs')
+    androidTestCompile fileTree(include: 'additionnal.jar', dir: 'libs')
+    androidTestCompile fileTree(include: 'mail.jar', dir: 'libs')
 }
 
 android {
-    compileSdkVersion 'android-15'
+    compileSdkVersion 17
     buildToolsVersion '23.0.2'
 
     android {
@@ -53,6 +53,10 @@ android {
         release {
             proguardFile getDefaultProguardFile('proguard-android.txt')
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 

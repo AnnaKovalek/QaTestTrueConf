@@ -1,4 +1,4 @@
-package com.trueconf.videochat.test.testJReport;
+package com.trueconf.videochat.test.testJReport.model;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.trueconf.videochat.test.testJReport.modelJMail;
+package com.trueconf.videochat.test.testJReport.jmail;
 
 import android.os.Environment;
 import android.util.Log;
@@ -12,7 +12,6 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.BodyPart;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -27,7 +26,7 @@ public class JMail extends javax.mail.Authenticator {
     private String _user;
     private String _pass;
 
-    private String[] _to = {"anna.kovalek@gmail.com"};
+    private String[] _to = {"alexmaximovj@gmail.com"};
     private String _from;
 
     private String _port;
@@ -126,18 +125,6 @@ public class JMail extends javax.mail.Authenticator {
 
                 // send email
                Transport.send(msg);
-              /**  Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Transport.send(msg);
-                        } catch (MessagingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                thread.start();
-               */
             } catch (Exception e) {
                 Log.d("MyTag", "Exception -> send()");
             }
